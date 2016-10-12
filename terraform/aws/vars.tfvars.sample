@@ -1,0 +1,5 @@
+defaultBucket="com-qubole-test-jellin"
+accountId="1234"
+bastionIncomingCider="23.21.142.142/32"
+externalId="abcd"
+quboleAccountId="1234"
