@@ -55,7 +55,7 @@ data "template_file" "crossAccountPolicy" {
     template = "${file("${path.module}/cross_account_role.json.tpl")}"
       vars {
         externalId = "${var.externalId}"
-        accountId  = "${var.quboleAccountId}"
+        quboleAccountId  = "${var.quboleAccountId}"
   }
 }
 

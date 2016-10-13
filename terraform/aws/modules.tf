@@ -77,3 +77,13 @@ output "bastion_address" {
 #	description = "Qubole RDS Password"
 #}
 
+####################################################################
+## S3 Default Location Bucket
+
+#module "s3defloc" {
+#  source = "./s3defloc"
+#  s3defloc = "${var.defaultBucket}"
+#}
+
+
+
