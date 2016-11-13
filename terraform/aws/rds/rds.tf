@@ -15,6 +15,13 @@ variable "password" {
 }
 
 
+variable "prefix-tag" {
+  
+}
+
+variable "rds-identifier" {
+}
+
 
 resource "aws_security_group" "default" {
   name        = "main_rds_sg"
@@ -37,12 +44,13 @@ resource "aws_security_group" "default" {
 
   tags {
     Name = "Qubole DB Security Group"
+    Prefix = "${var.prefix-tag}"
   }
 }
 
 resource "aws_db_instance" "default" {
   depends_on             = ["aws_security_group.default"]
-  identifier             = "${var.identifier}"
+  identifier             = "${var.rds-identifier}"
   allocated_storage      = "${var.storage}"
   engine                 = "${var.engine}"
   engine_version         = "${lookup(var.engine_version, var.engine)}"
@@ -53,21 +61,22 @@ resource "aws_db_instance" "default" {
   multi_az               = "True"
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   db_subnet_group_name   = "${aws_db_subnet_group.default.id}"
+  tags {
+    Prefix = "${var.prefix-tag}"
+  }
 }
 
 resource "aws_db_subnet_group" "default" {
   name        = "qubole_db_subnet_group"
   description = "Our main group of subnets"
   subnet_ids  = ["${var.qubole-private-a-id}", "${var.qubole-private-b-id}"]
+  tags {
+    Prefix = "${var.prefix-tag}"
+  }
 }
 
 
 
-
-variable "identifier" {
-  default     = "qubole-rds"
-  description = "Identifier for your DB"
-}
 
 variable "storage" {
   default     = "10"
@@ -103,6 +112,11 @@ variable "username" {
   description = "User name"
 }
 
+output "rdshost" {
+  
+  value = "${aws_db_instance.default.address}"
+
+}
 
 
 

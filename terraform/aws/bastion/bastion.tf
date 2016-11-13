@@ -17,6 +17,12 @@ variable "qubole-vpc" {
   
 }
 
+
+variable "prefix-tag" {
+  
+}
+
+
 resource "aws_instance" "bastion" {
    ami = "${data.aws_ami.nat_ami.id}"
    instance_type = "${var.bastionInstanceType}"
@@ -24,6 +30,7 @@ resource "aws_instance" "bastion" {
    associate_public_ip_address = true
    tags {
        Name = "Qubole Bastion"
+       Prefix = "${var.prefix-tag}"
    }
    vpc_security_group_ids=["${aws_security_group.qubole-bastion.id}"]
 }
@@ -48,6 +55,11 @@ resource "aws_security_group" "qubole-bastion" {
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+   tags {
+       Prefix = "${var.prefix-tag}"
+   }
+
 }
 
 

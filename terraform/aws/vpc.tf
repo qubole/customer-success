@@ -4,6 +4,8 @@ resource "aws_vpc" "qubole-vpc" {
     enable_dns_hostnames = true
     tags {
         Name = "qubole-vpc"
+        Prefix = "${var.prefix-tag}"
+
     }
 }
 
@@ -18,6 +20,7 @@ resource "aws_subnet" "qubole-public-a" {
 
     tags {
         "Name" = "qubole-public-a"
+        "Prefix" = "${var.prefix-tag}"
     }
 }
 
@@ -29,7 +32,9 @@ resource "aws_subnet" "qubole-private-a" {
     map_public_ip_on_launch = true
 
     tags {
-        "Name" = "qubole-private-b"
+        "Name" = "qubole-private-a"
+        "Prefix" = "${var.prefix-tag}"
+
     }
 }
 
@@ -41,11 +46,10 @@ resource "aws_subnet" "qubole-private-b" {
     map_public_ip_on_launch = true
 
     tags {
-        "Name" = "qubole-private-a"
+        "Name" = "qubole-private-b"
+        "Prefix" = "${var.prefix-tag}"
     }
 }
-
-
 
 
 
@@ -61,6 +65,7 @@ resource "aws_route_table" "nat_route_table" {
     }
     tags {
         Name = "main"
+        Prefix = "${var.prefix-tag}"
     }
 }
 
@@ -68,6 +73,8 @@ resource "aws_internet_gateway" "gw" {
     vpc_id = "${aws_vpc.qubole-vpc.id}"
     tags {
         Name = "qubole_internet_gateway"
+        Prefix = "${var.prefix-tag}"
+
     }
 }
 
@@ -91,8 +98,12 @@ resource "aws_route_table" "priv_nat_route_table" {
     }
     tags {
         Name = "privateQubole"
+        Prefix = "${var.prefix-tag}"
+
     }
 }
+
+
 
 # route table associations
 # public route tables

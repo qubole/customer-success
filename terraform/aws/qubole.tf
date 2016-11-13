@@ -2,15 +2,8 @@ variable "defaultBucket" {
   description = "Qubole Default S3 Location"
 }
 
-
-variable "bastionIncomingCidr"{
-	description ="Cidr block to allow Qubole to connect to bastion"
-	default = "23.21.156.210/32"
-}
-
-variable "bastionInstanceType" {
-  default = "t2.micro"
-  description = "instance type to use for Bastion host"
+variable "prefix-tag" {
+  description = "Qubole Tag to add to Resources"
 }
 
 variable "zoneA" {

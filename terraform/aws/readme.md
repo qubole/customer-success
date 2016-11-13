@@ -36,6 +36,18 @@ The following components are included in the scripts.
 
 ** By default an these resources are not created by default but can be enabled by modifying ```modules.tf``` to include the desired modules.
 
+Certain AWS resources require a unique name. Under to allow this script to be run multiple times within the same VPC and to not class with other resources a prefix tag will be prepended to these resources. 
+
+* IAM User Name and Group for Storage
+* IAM User Name and Group for Compute
+* IAM Role Name
+* IAM Policy Name for Storage and Compute
+* RDS instance name
+
+If you wish to use specific values for the above the recommended approach is to use the tfvars file as described later in this document.
+
+In addition where possible the ```Prefix`` tag is used to label the resources.
+`
 ### Usage
 The terraform utility can be downloaded from Hasicorp [here](https://www.terraform.io/downloads.html) 
 
@@ -116,6 +128,7 @@ bastion/bastion.tf
 | bastionIncomingCidr | aws_ami |
 | qubole-public-a ||
 | qubole-vpc |  |
+| prefix-tag | | 
  
 #### RDS
 ```
@@ -123,10 +136,12 @@ rds/rds.tf
 ```
 |    Inputs    | outputs|
 |-------------|:------:|
-| qubole-vpc-id |  |
+| qubole-vpc-id | rdshost  |
 | qubole-private-a-id |  |
 | qubole-private-b-id ||
 | password |  |
+| prefix-tag | | 
+| rds-identifier||
 
 #### Cross Account Role
 ```
@@ -139,6 +154,8 @@ role/iam.tf
 | s3policy_arn | |
 | externalId ||
 | quboleAccountId |  |
+| roleName||
+| prefix-tag||
 
 #### IAM User
 ```
@@ -150,6 +167,7 @@ user/iam.tf
 | computepolicy_arn | compute_iam_secret_key |
 | externalId | storage_iam_access_key |
 | quboleAccountId | storage_iam_secret_key |
+| prefix-tag||
 
 #### S3 Default Location
 ```

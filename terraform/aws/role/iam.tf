@@ -23,6 +23,13 @@ variable "quboleAccountId" {
   
 }
 
+variable "prefix-tag" {
+  
+}
+
+variable "roleName" {
+  
+}
 
 
 resource "aws_iam_policy_attachment" "s3" {
@@ -48,6 +55,7 @@ data "template_file" "rolePolicy" {
     template = "${file("${path.module}/iam_role.json.tpl")}"
       vars {
         accountId = "${var.accountId}"
+        roleName = "${var.roleName}"
   }
 }
 
@@ -67,7 +75,7 @@ resource "aws_iam_policy" "qubole-crossaccount-policy" {
 }
 
 resource "aws_iam_role" "qdsrole" {
-    name = "QDSIAMRole"
+    name = "${var.prefix-tag}-QDSIAMRole"
     assume_role_policy = "${data.template_file.crossAccountPolicy.rendered}"
 }
 

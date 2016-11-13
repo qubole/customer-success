@@ -11,13 +11,13 @@ data "template_file" "computePolicy" {
 }
 
 resource "aws_iam_policy" "computepolicy" {
-    name = "QubolEec2Policy"
+    name = "${var.prefix-tag}-QuboleEec2Policy"
     policy = "${data.template_file.computePolicy.rendered}"
 }
 
 
 resource "aws_iam_policy" "s3policy" {
-    name = "QuboleS3Policy"
+    name = "${var.prefix-tag}-QuboleS3Policy"
     policy ="${data.template_file.storagePolicy.rendered}"
 }
 
