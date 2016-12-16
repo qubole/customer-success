@@ -14,7 +14,9 @@
               ],
     "Resource": [
                  "arn:aws:s3:::${defaultBucket}/*",
-                 "arn:aws:s3:::${defaultBucket}"
+                 "arn:aws:s3:::${defaultBucket}",
+                 "arn:aws:s3:::paid-qubole",
+                 "arn:aws:s3:::paid-qubole/*"
                  ]
   }
   ]
