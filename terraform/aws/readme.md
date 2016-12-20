@@ -15,6 +15,10 @@ While Qubole is a SaaS offering that runs in the cloud. Since Qubole runs a Hado
 ## Terraform 
 As thre requirements for creating cloud resrources have become more complex tools for managing these resoruces as code have emerged. [Terrraform](https://www.terraform.io/) is one such tool.  Terraform allows infrastructure to be created, managed and deployed in a repeatable manner.
 
+These scripts have been confirmed to work with Terraform .8.1 later versions may work but they are not yet tested.
+
+https://releases.hashicorp.com/terraform/0.8.1/
+
 ### Terraform for AWS
 
 The Qubole Customer Success team has now provided sample scripts to create your AWS environment. The [scripts](https://github.com/qubole/customer-success/tree/master/terraform/aws) can be used to setup a completely new VPC for Qubole complete with all

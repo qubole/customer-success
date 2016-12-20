@@ -1,9 +1,19 @@
 #comment out values that have a default or if you want 
 #to be prompted, or pass values via the env.
+
+#The following are required at a minimum 
 defaultBucket="com-qubole-test-jellin"
-accountId="1234"
-bastionIncomingCidr="23.21.142.142/32"
-externalId="abcd"
-quboleAccountId="1234"
-rdspassword="mysql!2345"
 prefix-tag="jellin"
+
+#required when using roles
+#accountId="1234"
+#externalId="abcd"
+#quboleAccountId="1234"
+
+#required when using rds
+#rdspassword="mysql!2345"
+
+#commonly overidden
+#bastionIncomingCidr="0.0.0.0/0"
+
+

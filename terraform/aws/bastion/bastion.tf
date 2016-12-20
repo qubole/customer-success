@@ -1,5 +1,5 @@
 #########################################
-#An Intance for Qubole Bastion
+#An Instance for Qubole Bastion
 
 variable "bastionInstanceType" {
   
