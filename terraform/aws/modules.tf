@@ -87,28 +87,28 @@ output "bastion_address" {
 
 ####################################################################
 ## RDS for private metastore
+#
+# module "create_rds" {
+#  source = "./rds"
+#  qubole-vpc-id = "${aws_vpc.qubole-vpc.id}"
+#  qubole-private-a-id = "${aws_subnet.qubole-private-a.id}"
+#  qubole-private-b-id = "${aws_subnet.qubole-private-b.id}"
+#  password = "${var.rdspassword}"
+#  prefix-tag = "${var.prefix-tag}"
+#  rds-identifier = "${var.rds-identifier}"
+#}
+#
+#variable "rdspassword" {
+#	description = "Qubole RDS Password"
+#}
 
-module "create_rds" {
-  source = "./rds"
-  qubole-vpc-id = "${aws_vpc.qubole-vpc.id}"
-  qubole-private-a-id = "${aws_subnet.qubole-private-a.id}"
-  qubole-private-b-id = "${aws_subnet.qubole-private-b.id}"
-  password = "${var.rdspassword}"
-  prefix-tag = "${var.prefix-tag}"
-  rds-identifier = "${var.rds-identifier}"
-}
+#variable "rds-identifier" {
+#   description = "rds-identifier, unique name for account" 
+#}
 
-variable "rdspassword" {
-	description = "Qubole RDS Password"
-}
-
-variable "rds-identifier" {
-   description = "rds-identifier, unique name for account" 
-}
-
-output "rds_host" {
-  value = "${module.create_rds.rdshost}"
-}
+#output "rds_host" {
+#  value = "${module.create_rds.rdshost}"
+#}
 
 ####################################################################
 ## S3 Default Location Bucket
