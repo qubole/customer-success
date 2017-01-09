@@ -1,0 +1,6 @@
+#comment out values that have a default or if you want 
+#to be prompted, or pass values via the env.
+
+resourceGroupName="jeffNet"
+prefix-tag="jellin"
+storageAccountName="jellinsawubole"
