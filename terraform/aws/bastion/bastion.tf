@@ -38,7 +38,7 @@ resource "aws_instance" "bastion" {
 
 #Security Group for Bastion
 resource "aws_security_group" "qubole-bastion" {
-    name = "qubole-bastion"
+    name = "${var.prefix-tag}-qubole-bastion"
     description = "Allow inbound bastion traffic"
     vpc_id = "${var.qubole-vpc}"
 
