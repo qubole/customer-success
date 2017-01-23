@@ -22,6 +22,10 @@ variable "prefix-tag" {
   
 }
 
+variable "qubole-vpc-cider" {
+  
+}
+
 
 resource "aws_instance" "bastion" {
    ami = "${data.aws_ami.nat_ami.id}"
@@ -47,6 +51,13 @@ resource "aws_security_group" "qubole-bastion" {
         to_port = 22
         protocol = "tcp"
         cidr_blocks = ["${var.bastionIncomingCidr}"]
+    }
+
+     ingress {
+        from_port = 7000
+        to_port = 7000
+        protocol = "tcp"
+        cidr_blocks = ["${var.qubole-vpc-cider}"]
     }
 
     egress {

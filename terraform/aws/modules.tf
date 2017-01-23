@@ -68,6 +68,7 @@ module "create_bastion" {
   bastionIncomingCidr = "${var.bastionIncomingCidr}"
   qubole-public-a = "${aws_subnet.qubole-public-a.id}"
   qubole-vpc = "${aws_vpc.qubole-vpc.id}"
+  qubole-vpc-cider = "${var.vpcCidr}"
   prefix-tag = "${var.prefix-tag}"
 }
 
@@ -81,9 +82,15 @@ variable "bastionInstanceType" {
   description = "instance type to use for Bastion host"
 }
 
+#needed for metastore ingress rule
+variable "vpcCidr" {
+  description = "cidr address for vpc"
+}
+
 output "bastion_address" {
     value = "${module.create_bastion.bastion_address}"
 }
+
 
 ####################################################################
 ## RDS for private metastore
