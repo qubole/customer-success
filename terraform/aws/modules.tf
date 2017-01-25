@@ -11,20 +11,21 @@
 #  externalId = "${var.externalId}"
 #  quboleAccountId = "${var.quboleAccountId}"
 #  prefix-tag = "${var.prefix-tag}"
+#  roleName = "${var.roleName}"
 #}
 
 #variable "externalId" {
 #	description = "ExternalId from Qubole - See QDS Control Panel"
 #}
-
+#
 #variable "roleName" {
 # description = "Role Name to Use"
 #}
-
+#
 #variable "quboleAccountId" {
 #  description = "ID of Qubole Account Id - See QDS Control Panel"
 #}
-
+#
 #output "crossaccount_arn" {
 #	value = "${module.create_iam_role.qdsrole}"
 #}
@@ -68,7 +69,7 @@ module "create_bastion" {
   bastionIncomingCidr = "${var.bastionIncomingCidr}"
   qubole-public-a = "${aws_subnet.qubole-public-a.id}"
   qubole-vpc = "${aws_vpc.qubole-vpc.id}"
-  qubole-vpc-cider = "${var.vpcCidr}"
+  qubole-vpc-cider = "${aws_vpc.qubole-vpc.cidr_block}"
   prefix-tag = "${var.prefix-tag}"
 }
 
@@ -82,10 +83,7 @@ variable "bastionInstanceType" {
   description = "instance type to use for Bastion host"
 }
 
-#needed for metastore ingress rule
-variable "vpcCidr" {
-  description = "cidr address for vpc"
-}
+
 
 output "bastion_address" {
     value = "${module.create_bastion.bastion_address}"

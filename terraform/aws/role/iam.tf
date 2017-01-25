@@ -74,8 +74,13 @@ resource "aws_iam_policy" "qubole-crossaccount-policy" {
     policy = "${data.template_file.rolePolicy.rendered}"
 }
 
+resource "aws_iam_instance_profile" "instance_profile" {
+    name = "${var.roleName}"
+    roles = ["${aws_iam_role.qdsrole.name}"]
+}
+
 resource "aws_iam_role" "qdsrole" {
-    name = "${var.prefix-tag}-QDSIAMRole"
+    name = "${var.roleName}"
     assume_role_policy = "${data.template_file.crossAccountPolicy.rendered}"
 }
 
