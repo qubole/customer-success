@@ -11,14 +11,22 @@
         "s3:PutObjectAcl",
         "s3:GetBucketAcl",
         "s3:ListBucket",
-        "s3:GetBucketLocation",
-        "s3:ListAllMyBuckets"
+        "s3:GetBucketLocation"
       ],
       "Resource": [
         "arn:aws:s3:::${defaultBucket}/*",
         "arn:aws:s3:::${defaultBucket}",
         "arn:aws:s3:::paid-qubole",
         "arn:aws:s3:::paid-qubole/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Resource": [
+        "*"
       ]
     }
   ]
